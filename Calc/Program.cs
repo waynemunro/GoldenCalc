@@ -11,45 +11,44 @@ namespace GoldenCalc
             {
                 Console.WriteLine("requires a term number");
                 return;
-            }
+            }                      
 
-            // var term = int.Parse(args[0]);
             var term = double.Parse(args[0]);
 
-            int result = Fibonacci((int)term).GetAwaiter().GetResult();
+            Console.WriteLine($"Term : {term}");
 
-            Console.WriteLine(result);
+            var result = Fibonacci(term).GetAwaiter().GetResult();
 
+            Console.WriteLine($"Iterative {result}");
 
             double fib = Fib(term);
 
-            Console.WriteLine(fib);
+            Console.WriteLine($"Formula   {fib}");
 
         }
 
         public static double Fib(double n)
         {
             var sqrt5 = Math.Sqrt(5);
-            double phi = (1 + sqrt5) / 2;
-            //return Math.Round(Math.Pow(phi, n + 1) / sqrt5);
-            return Math.Pow(phi, n + 1) / sqrt5;
+            var phi = (1 + sqrt5) / 2;
+            return Math.Round(Math.Pow(phi, n + 2) / sqrt5);
         }
 
 
-        public static async Task<int> Fibonacci(int term)
+        public static async Task<double> Fibonacci(double term)
         {
             var count = 0;
-            var a = 0;
-            var b = 1;
-            var c = 0;
+            var a = 0d;
+            var b = 1d;
+            var c = 0d;
 
             var r = await Task.Factory.StartNew(() =>
             {
-                while (count < term)
+                while (count <= term)
                 {
                     c = a + b ;
 
-                    Console.WriteLine($"{count} : {c}", count, c);
+                    Console.WriteLine($"# {count} : {a} + {b} = {c}");
 
                     a = b;
                     b = c;

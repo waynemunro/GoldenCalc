@@ -2,7 +2,7 @@
   "profiles": {
     "Calc": {
       "commandName": "Project",
-      "commandLineArgs": "\"9.25\""
+      "commandLineArgs": "\"100\""
     }
   }
 }
